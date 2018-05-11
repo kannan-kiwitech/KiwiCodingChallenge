@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<CodingChallenge1.Models.Property> 
+
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -16,9 +18,18 @@
     <div class="col-md-8" id="dvMap" style="height:500px;">
     </div>
     <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+
+        @foreach (var item in Model)
+    {
+
+
+
+
+        <h2>@item.Name</h2>
+        <h3>@item.City</h3>
+        <h3>@item.State, @item.ZipCode</h3>
+    
+    }
     </div>
 </div>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

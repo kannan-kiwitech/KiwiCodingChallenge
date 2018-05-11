@@ -1,4 +1,5 @@
 ﻿using CodingChallenge1.Controllers;
+using CodingChallenge1.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Web.Mvc;
 
@@ -11,7 +12,7 @@ namespace CodingChallenge1.Tests.Controllers
         public void Index()
         {
             // Arrange
-            HomeController controller = new HomeController();
+            HomeController controller = new HomeController(new ApplicationDbContext() );
 
             // Act
             ViewResult result = controller.Index() as ViewResult;
@@ -24,7 +25,7 @@ namespace CodingChallenge1.Tests.Controllers
         public void About()
         {
             // Arrange
-            HomeController controller = new HomeController();
+            HomeController controller = new HomeController(new ApplicationDbContext());
 
             // Act
             ViewResult result = controller.About() as ViewResult;
@@ -37,7 +38,7 @@ namespace CodingChallenge1.Tests.Controllers
         public void Contact()
         {
             // Arrange
-            HomeController controller = new HomeController();
+            HomeController controller = new HomeController(new ApplicationDbContext());
 
             // Act
             ViewResult result = controller.Contact() as ViewResult;
