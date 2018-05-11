@@ -2,6 +2,7 @@
 using Owin;
 
 [assembly: OwinStartupAttribute(typeof(CodingChallenge1.Startup))]
+
 namespace CodingChallenge1
 {
     public partial class Startup

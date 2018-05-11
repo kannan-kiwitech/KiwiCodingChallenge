@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web.Mvc;
+﻿using CodingChallenge1.Controllers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using CodingChallenge1;
-using CodingChallenge1.Controllers;
+using System.Web.Mvc;
 
 namespace CodingChallenge1.Tests.Controllers
 {
