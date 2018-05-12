@@ -17,7 +17,32 @@ namespace CodingChallenge1.Controllers
         {
 
 
-            var properties = _dbContext.Properties.Take(10).ToList();
+            var properties = _dbContext.Properties.AsQueryable();
+
+            if (zip != null)
+            {
+                properties = properties.Where(a => a.ZipCode.Contains(zip));
+            }
+            if (state != null)
+            {
+                properties = properties.Where(a => a.State.Contains(state));
+            }
+            if (city != null)
+            {
+                properties = properties.Where(a => a.City.Contains(city));
+            }
+            if (bedrooms != null)
+            {
+                properties = properties.Where(a => a.Bedrooms == bedrooms);
+            }
+            if (bathrooms != null)
+            {
+                properties = properties.Where(a => a.Bathrooms == bathrooms);
+            }
+
+            properties = properties.Take(10);
+
+
             return View(properties);
         }
 

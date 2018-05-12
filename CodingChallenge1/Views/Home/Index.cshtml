@@ -1,4 +1,4 @@
-﻿@model List<CodingChallenge1.Models.Property> 
+﻿@model IEnumerable<CodingChallenge1.Models.Property>
 
 @{
     ViewBag.Title = "Home Page";
@@ -20,48 +20,66 @@
     <div class="col-md-4">
 
         @foreach (var item in Model)
-    {
+        {
 
+            <h2>@item.Name</h2>
+            <h3>@item.City</h3>
+            <h3>@item.State, @item.ZipCode</h3>
 
-
-
-        <h2>@item.Name</h2>
-        <h3>@item.City</h3>
-        <h3>@item.State, @item.ZipCode</h3>
-    
-    }
+        }
     </div>
 </div>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCV9jnDSFNYrVPOdqVukVUU3WpALVBTTx8&callback=initMap" async defer></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCICQhqcjhXQNrgkT_dO6gLrogtC65CpO4&callback=initMap" async defer></script>
 <script type="text/javascript">
-  function initMap() {
-    var map = new google.maps.Map(document.getElementById('dvMap'), {
-        center: {
-            lat: 10.9968683,
-            lng: 76.00882
-        },
-        zoom: 15
-    });
-    //marker..
-    var marker = new google.maps.Marker({
-        position: {
-            lat: 10.9968683,
-            lng: 76.00882
-        },
-        map: map,
-        draggable: true
-    });
+    var lat = 28.6139;
+    var lng = 77.209;
+    @if (Model.FirstOrDefault() != null) {
+        <text>
+        lat =@Model.FirstOrDefault().Latitude;
+        lng =@Model.FirstOrDefault().Longitude;
+        </text>
+    }
+
+    function initMap() {
+        var map = new google.maps.Map(document.getElementById('dvMap'), {
+                center: {
+        lat: lat,
+                    lng: lng
+                },
+            zoom: 7
+        });
+
+
+    function addMarker(latitude, longitude, title, description, details, map) {
+            var latLng = new google.maps.LatLng(latitude, longitude);
+            var contentString = '<h3>' + title + '</h3>' + '<h4>' + description + '</h3>' + '<h5>' + details + '</h5>';
+
+            var infowindow = new google.maps.InfoWindow({
+                content: contentString
+            });
+
+            var marker = new google.maps.Marker({
+                position: latLng,
+                title: title,
+                map: map,
+                draggable: false
+            });
+
+            google.maps.event.addListener(marker, 'click', function () {
+                infowindow.open(map, marker);
+            });
+    }
+
+
+
+         // Now add markers
+    @foreach (var item in Model) {
+        @:addMarker(@item.Latitude, @item.Longitude, '@item.Name', '@item.State, @item.City - @item.ZipCode', '@item.Bedrooms bd @item.Bathrooms ba' , map);
+    }
+
 
 			//dragend event of marker
-google.maps.event.addListener(marker,'dragend', function () {
-    var Lats = marker.getPosition().lat();
-    var Longs = marker.getPosition().lng();
-
-    $('#Lat').val(Lats);
-    $('#Long').val(Longs);
-
-});
 }
 </script>

@@ -12,10 +12,10 @@ namespace CodingChallenge1.Tests.Controllers
         public void Index()
         {
             // Arrange
-            HomeController controller = new HomeController(new ApplicationDbContext() );
+            HomeController controller = new HomeController();
 
             // Act
-            ViewResult result = controller.Index() as ViewResult;
+            ViewResult result = controller.Index("a","b","c",1,2) as ViewResult;
 
             // Assert
             Assert.IsNotNull(result);
@@ -25,7 +25,7 @@ namespace CodingChallenge1.Tests.Controllers
         public void About()
         {
             // Arrange
-            HomeController controller = new HomeController(new ApplicationDbContext());
+            HomeController controller = new HomeController();
 
             // Act
             ViewResult result = controller.About() as ViewResult;
@@ -38,7 +38,7 @@ namespace CodingChallenge1.Tests.Controllers
         public void Contact()
         {
             // Arrange
-            HomeController controller = new HomeController(new ApplicationDbContext());
+            HomeController controller = new HomeController();
 
             // Act
             ViewResult result = controller.Contact() as ViewResult;

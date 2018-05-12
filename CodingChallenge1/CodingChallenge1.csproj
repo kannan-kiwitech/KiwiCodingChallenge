@@ -218,6 +218,10 @@
     <Compile Include="Migrations\201805111911589_PropMoreFields.Designer.cs">
       <DependentUpon>201805111911589_PropMoreFields.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805112103494_PropChangeFlds.cs" />
+    <Compile Include="Migrations\201805112103494_PropChangeFlds.Designer.cs">
+      <DependentUpon>201805112103494_PropChangeFlds.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -313,6 +317,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805111911589_PropMoreFields.resx">
       <DependentUpon>201805111911589_PropMoreFields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805112103494_PropChangeFlds.resx">
+      <DependentUpon>201805112103494_PropChangeFlds.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
