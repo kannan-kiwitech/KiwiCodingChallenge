@@ -36,13 +36,17 @@
 <div class="row">
     <div class="col-md-8" id="dvMap" style="height:500px;">
     </div>
+    @{
+        int i = 0;
+    }
 
     @foreach (var item in Model)
     {
 
+        i++;
         <div class="col-md-3">
             <div class="card">
-                <img width="200" src="http://cevirdikce.com/proje/hasem-2/images/finance-1.jpg">
+                <img style="max-height:130px; max-width:200px;" src="@item.ImageUrl">
                 <h4>
                     @item.Name <a href="/Home/Favourite?propertyId=@item.Id">
                         @if (item.IsFavourite)
@@ -55,18 +59,25 @@
                         }
                     </a>
                 </h4>
-                <h5>bd @item.Bedrooms ba @item.Bathrooms</h5>
+                <h5>bd @item.Bedrooms ba @item.Bathrooms - @string.Format("{0:C}", item.Price)</h5>
                 <h6>@item.City, @item.State - @item.ZipCode</h6>
                 <a href="javascript:google.maps.event.trigger(gmarkers['@item.Id'],'click');" class="button3">View In Map</a>
-                <a href="blog-ici.html" class="blue-button">Read More</a>
+                <hr />
             </div>
         </div>
     }
-
-
 </div>
-@*<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>*@
+
+@if (i == 0)
+{
+    <div class="row">
+        <div class="col-md-12">
+            <h4>There are no properties available in this location.</h4>
+            <h5>Please change the search criteria to find properties</h5>
+        </div>
+    </div>
+}
+
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCICQhqcjhXQNrgkT_dO6gLrogtC65CpO4&callback=initMap" async defer></script>
 <script type="text/javascript">
     var lat = 28.6139;
@@ -84,7 +95,7 @@
         lat: lat,
                     lng: lng
                 },
-            zoom: 7
+            zoom: 10
         });
 
     gmarkers = [];
@@ -112,7 +123,7 @@
         return marker;
     }
     @foreach (var item in Model) {
-        @:gmarkers['@item.Id'] = addMarker(@item.Latitude, @item.Longitude, '@item.Name', '@item.State, @item.City - @item.ZipCode', '@item.Bedrooms bd @item.Bathrooms ba' , map);
+        @:gmarkers['@item.Id'] = addMarker(@item.Latitude, @item.Longitude, '@item.Name - @string.Format("{0:C}", item.Price)', '@item.State, @item.City - @item.ZipCode', '@item.Bedrooms bd @item.Bathrooms ba' , map);
     }
 }
 </script>

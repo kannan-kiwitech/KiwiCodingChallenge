@@ -204,27 +204,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="IOC\ChallengeContainer.cs" />
-    <Compile Include="IOC\DependencyLoader.cs" />
-    <Compile Include="Migrations\201805111040081_InitialCreate.cs" />
-    <Compile Include="Migrations\201805111040081_InitialCreate.Designer.cs">
-      <DependentUpon>201805111040081_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201805122012197_InitialCreate.cs" />
+    <Compile Include="Migrations\201805122012197_InitialCreate.Designer.cs">
+      <DependentUpon>201805122012197_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201805111242060_Property.cs" />
-    <Compile Include="Migrations\201805111242060_Property.Designer.cs">
-      <DependentUpon>201805111242060_Property.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805111911589_PropMoreFields.cs" />
-    <Compile Include="Migrations\201805111911589_PropMoreFields.Designer.cs">
-      <DependentUpon>201805111911589_PropMoreFields.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805112103494_PropChangeFlds.cs" />
-    <Compile Include="Migrations\201805112103494_PropChangeFlds.Designer.cs">
-      <DependentUpon>201805112103494_PropChangeFlds.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805121719074_Favourites.cs" />
-    <Compile Include="Migrations\201805121719074_Favourites.Designer.cs">
-      <DependentUpon>201805121719074_Favourites.cs</DependentUpon>
+    <Compile Include="Migrations\201805122033040_AddPrice.cs" />
+    <Compile Include="Migrations\201805122033040_AddPrice.Designer.cs">
+      <DependentUpon>201805122033040_AddPrice.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -297,6 +283,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Home\Favourites.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -315,20 +302,11 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201805111040081_InitialCreate.resx">
-      <DependentUpon>201805111040081_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805122012197_InitialCreate.resx">
+      <DependentUpon>201805122012197_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805111242060_Property.resx">
-      <DependentUpon>201805111242060_Property.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805111911589_PropMoreFields.resx">
-      <DependentUpon>201805111911589_PropMoreFields.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805112103494_PropChangeFlds.resx">
-      <DependentUpon>201805112103494_PropChangeFlds.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805121719074_Favourites.resx">
-      <DependentUpon>201805121719074_Favourites.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805122033040_AddPrice.resx">
+      <DependentUpon>201805122033040_AddPrice.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

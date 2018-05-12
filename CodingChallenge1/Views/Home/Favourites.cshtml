@@ -1,0 +1,52 @@
+﻿@model IEnumerable<CodingChallenge1.Models.PropertyViewModel>
+
+@{
+    ViewBag.Title = "Favourite Properties";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h3>@ViewBag.Title</h3>
+    </div>
+</div>
+
+<div class="row">
+
+    @{
+        int i = 0;
+    }
+
+    @foreach (var item in Model)
+    {
+        i++;
+        <div class="col-md-3">
+            <div class="card">
+                <img width="200" src="@item.ImageUrl">
+                <h4>
+                    @item.Name <a href="/Home/Favourite?propertyId=@item.Id">
+                        @if (item.IsFavourite)
+                        {
+                            <span class="glyphicon glyphicon-heart favourite-no" aria-hidden="true"></span>
+                        }
+                        else
+                        {
+                            <span class="glyphicon glyphicon-heart favourite-yes" aria-hidden="true"></span>
+                        }
+                    </a>
+                </h4>
+                <h5>bd @item.Bedrooms ba @item.Bathrooms - @string.Format("{0:C}", item.Price)</h5>
+                <h6>@item.City, @item.State - @item.ZipCode</h6>
+            </div>
+        </div>
+    }
+</div>
+
+@if (i == 0)
+{
+    <div class="row">
+        <div class="col-md-12">
+            <h4>There are no favourite properties added to your list</h4>
+            <h5>You can click on the heart icon in the property list to add them to your favourite list</h5>
+        </div>
+    </div>
+}

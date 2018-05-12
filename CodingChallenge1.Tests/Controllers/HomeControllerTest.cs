@@ -1,5 +1,4 @@
 ﻿using CodingChallenge1.Controllers;
-using CodingChallenge1.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Web.Mvc;
 
@@ -15,7 +14,7 @@ namespace CodingChallenge1.Tests.Controllers
             HomeController controller = new HomeController();
 
             // Act
-            ViewResult result = controller.Index("a","b","c",1,2) as ViewResult;
+            ViewResult result = controller.Index("a", "b", "c", 1, 2) as ViewResult;
 
             // Assert
             Assert.IsNotNull(result);

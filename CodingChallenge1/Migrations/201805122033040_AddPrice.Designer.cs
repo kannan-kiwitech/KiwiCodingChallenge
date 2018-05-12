@@ -7,13 +7,13 @@ namespace CodingChallenge1.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Favourites : IMigrationMetadata
+    public sealed partial class AddPrice : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Favourites));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddPrice));
         
         string IMigrationMetadata.Id
         {
-            get { return "201805121719074_Favourites"; }
+            get { return "201805122033040_AddPrice"; }
         }
         
         string IMigrationMetadata.Source

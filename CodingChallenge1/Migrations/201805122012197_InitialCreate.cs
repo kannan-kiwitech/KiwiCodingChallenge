@@ -7,6 +7,25 @@ namespace CodingChallenge1.Migrations
         public override void Up()
         {
             CreateTable(
+                "dbo.Properties",
+                c => new
+                {
+                    Id = c.Guid(nullable: false, identity: true),
+                    Name = c.String(),
+                    Address = c.String(),
+                    City = c.String(),
+                    State = c.String(),
+                    Country = c.String(),
+                    ZipCode = c.String(),
+                    ImageUrl = c.String(),
+                    Latitude = c.Double(nullable: false),
+                    Longitude = c.Double(nullable: false),
+                    Bedrooms = c.Int(nullable: false),
+                    Bathrooms = c.Int(nullable: false),
+                })
+                .PrimaryKey(t => t.Id);
+
+            CreateTable(
                 "dbo.AspNetRoles",
                 c => new
                 {
@@ -28,6 +47,20 @@ namespace CodingChallenge1.Migrations
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId)
                 .Index(t => t.RoleId);
+
+            CreateTable(
+                "dbo.UserFavourites",
+                c => new
+                {
+                    Id = c.Guid(nullable: false, identity: true),
+                    UserId = c.String(maxLength: 128),
+                    PropertyId = c.Guid(nullable: false),
+                })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Properties", t => t.PropertyId, cascadeDelete: true)
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId)
+                .Index(t => t.UserId)
+                .Index(t => t.PropertyId);
 
             CreateTable(
                 "dbo.AspNetUsers",
@@ -77,21 +110,27 @@ namespace CodingChallenge1.Migrations
 
         public override void Down()
         {
+            DropForeignKey("dbo.UserFavourites", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.UserFavourites", "PropertyId", "dbo.Properties");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
+            DropIndex("dbo.UserFavourites", new[] { "PropertyId" });
+            DropIndex("dbo.UserFavourites", new[] { "UserId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
+            DropTable("dbo.UserFavourites");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
+            DropTable("dbo.Properties");
         }
     }
 }

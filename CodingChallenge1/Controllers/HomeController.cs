@@ -1,9 +1,9 @@
 ﻿using CodingChallenge1.Models;
-using System.Web.Mvc;
-using System.Linq;
-using System;
 using Microsoft.AspNet.Identity;
+using System;
 using System.Data.Entity;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace CodingChallenge1.Controllers
 {
@@ -18,7 +18,6 @@ namespace CodingChallenge1.Controllers
 
         public ActionResult Index(string state, string city, string zip, int? bedrooms, int? bathrooms)
         {
-
             var properties = _dbContext.Properties.AsQueryable();
 
             if (zip != null)
@@ -56,6 +55,7 @@ namespace CodingChallenge1.Controllers
                     City = p.City,
                     Country = p.Country,
                     ImageUrl = p.ImageUrl,
+                    Price = p.Price,
                     Id = p.Id,
                     Latitude = p.Latitude,
                     Longitude = p.Longitude,
@@ -77,6 +77,7 @@ namespace CodingChallenge1.Controllers
                     City = p.City,
                     Country = p.Country,
                     ImageUrl = p.ImageUrl,
+                    Price = p.Price,
                     Id = p.Id,
                     Latitude = p.Latitude,
                     Longitude = p.Longitude,
@@ -85,7 +86,6 @@ namespace CodingChallenge1.Controllers
                     ZipCode = p.ZipCode,
                     IsFavourite = favourites.Contains(p.Id)
                 });
-
             }
 
             return View(propertyViewModel);
@@ -93,7 +93,37 @@ namespace CodingChallenge1.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "KiwiTech Code Challenge";
+            return View();
+        }
+
+        [Authorize]
+        public ActionResult Favourites()
+        {
+            ViewBag.Message = "Your favourite properties.";
+
+            var currentUserId = User.Identity.GetUserId();
+            if (currentUserId != null)
+            {
+                var model = _dbContext.UserFavourites.Where(a => a.UserId == currentUserId).Select(p => new PropertyViewModel
+                {
+                    Address = p.Property.Address,
+                    Bathrooms = p.Property.Bathrooms,
+                    Bedrooms = p.Property.Bedrooms,
+                    City = p.Property.City,
+                    Country = p.Property.Country,
+                    ImageUrl = p.Property.ImageUrl,
+                    Id = p.Property.Id,
+                    Price = p.Property.Price,
+                    Latitude = p.Property.Latitude,
+                    Longitude = p.Property.Longitude,
+                    Name = p.Property.Name,
+                    State = p.Property.State,
+                    ZipCode = p.Property.ZipCode,
+                    IsFavourite = true
+                });
+                return View(model);
+            }
             return View();
         }
 
@@ -123,7 +153,6 @@ namespace CodingChallenge1.Controllers
                         _dbContext.UserFavourites.Remove(favourite);
                         _dbContext.SaveChangesAsync();
                     }
-
                 }
 
                 ViewBag.Message = "Your application description page.";
@@ -134,7 +163,7 @@ namespace CodingChallenge1.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "";
             return View();
         }
     }
