@@ -36,5 +36,6 @@ namespace CodingChallenge1.Models
         }
 
         public System.Data.Entity.DbSet<Property> Properties { get; set; }
+        public System.Data.Entity.DbSet<UserFavourites> UserFavourites { get; set; }
     }
 }

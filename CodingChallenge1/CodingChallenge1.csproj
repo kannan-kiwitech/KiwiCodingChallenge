@@ -222,11 +222,17 @@
     <Compile Include="Migrations\201805112103494_PropChangeFlds.Designer.cs">
       <DependentUpon>201805112103494_PropChangeFlds.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805121719074_Favourites.cs" />
+    <Compile Include="Migrations\201805121719074_Favourites.Designer.cs">
+      <DependentUpon>201805121719074_Favourites.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Property.cs" />
+    <Compile Include="Models\PropertyViewModel.cs" />
+    <Compile Include="Models\UserFavourites.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -320,6 +326,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805112103494_PropChangeFlds.resx">
       <DependentUpon>201805112103494_PropChangeFlds.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805121719074_Favourites.resx">
+      <DependentUpon>201805121719074_Favourites.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

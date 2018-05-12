@@ -1,17 +1,36 @@
-﻿@model IEnumerable<CodingChallenge1.Models.Property>
+﻿@model IEnumerable<CodingChallenge1.Models.PropertyViewModel>
 
 @{
     ViewBag.Title = "Home Page";
 }
 
 <div class="row">
-    <div class="col-md-8">
-        <h3>Search</h3>
-        <p>
-        </p>
-    </div>
-    <div class="col-md-4">
-    </div>
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        <div class="col-md-12">
+            <h4>Search properties</h4>
+            <p>
+                <input type="text" size="8" placeholder="city" id="city" name="city" value="@Request["city"]">
+                <input type="text" size="8" placeholder="state" id="state" name="state" value="@Request["state"]">
+                <input type="text" size="6" placeholder="zip" id="zip" name="zip" value="@Request["zip"]">
+                <select id="bedrooms" name="bedrooms">
+                    <option value="">Bedrooms</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                </select>
+                <select id="bathrooms" name="bathrooms">
+                    <option value="">Bathrooms</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                </select>
+
+                <input type="submit" class="btn-info" id="search" value="Search" name="search">
+            </p>
+            <hr />
+        </div>
+    }
 </div>
 
 <div class="row">
@@ -24,19 +43,30 @@
         <div class="col-md-3">
             <div class="card">
                 <img width="200" src="http://cevirdikce.com/proje/hasem-2/images/finance-1.jpg">
-                <h4>@item.Name</h4>
+                <h4>
+                    @item.Name <a href="/Home/Favourite?propertyId=@item.Id">
+                        @if (item.IsFavourite)
+                        {
+                            <span class="glyphicon glyphicon-heart favourite-no" aria-hidden="true"></span>
+                        }
+                        else
+                        {
+                            <span class="glyphicon glyphicon-heart favourite-yes" aria-hidden="true"></span>
+                        }
+                    </a>
+                </h4>
                 <h5>bd @item.Bedrooms ba @item.Bathrooms</h5>
                 <h6>@item.City, @item.State - @item.ZipCode</h6>
                 <a href="javascript:google.maps.event.trigger(gmarkers['@item.Id'],'click');" class="button3">View In Map</a>
-            <a href="blog-ici.html" class="blue-button">Read More</a>
+                <a href="blog-ici.html" class="blue-button">Read More</a>
             </div>
         </div>
     }
 
-        
+
 </div>
 @*<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>*@
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>*@
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCICQhqcjhXQNrgkT_dO6gLrogtC65CpO4&callback=initMap" async defer></script>
 <script type="text/javascript">
     var lat = 28.6139;
