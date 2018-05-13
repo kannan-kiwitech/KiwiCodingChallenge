@@ -1,0 +1,20 @@
+﻿@model CodingChallenge1.Models.Property
+
+@{
+    ViewBag.Title = "Home Page";
+}
+<div class="row">
+    <div class="col-md-12">
+        <h2>@Model.Name</h2>
+        <img src="@Model.ImageUrl">
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <h4>@string.Format("{0:C}", Model.Price)</h4>
+        <h4>Bedrooms: @Model.Bathrooms, Bathrooms: @Model.Bathrooms</h4>
+        <h3>@Model.City</h3>
+        <h3>@Model.State, @Model.Country - @Model.ZipCode</h3>
+
+    </div>
+</div>

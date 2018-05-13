@@ -46,7 +46,9 @@
         i++;
         <div class="col-md-3">
             <div class="card">
-                <img style="max-height:130px; max-width:200px;" src="@item.ImageUrl">
+                <a href="/Property/@item.Id">
+                    <img style="max-height:130px; max-width:200px;" src="@item.ImageUrl">
+                </a>
                 <h4>
                     @item.Name <a href="/Home/Favourite?propertyId=@item.Id">
                         @if (item.IsFavourite)
