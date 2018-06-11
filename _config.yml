@@ -1,1 +1,2 @@
-theme: jekyll-theme-hacker
+language: csharp
+solution: CodingChallenge1.sln
